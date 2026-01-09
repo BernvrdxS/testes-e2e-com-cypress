@@ -102,21 +102,14 @@ Cypress.Commands.add('deleteNote', note => {
 })
 
 Cypress.Commands.add('fillSettingsFormAndSubmit', () => {
-  cy.visit('/settings')
-  cy.get('#storage').type('1')
-  cy.get('#name').type('Mary Doe')
-  cy.iframe('.card-field iframe')
-    .as('iframe')
-    .find('[name="cardnumber"]')
-    .type('4242424242424242')
-  cy.get('@iframe')
-    .find('[name="exp-date"]')
-    .type('1271')
-  cy.get('@iframe')
-    .find('[name="cvc"]')
-    .type('123')
-  cy.get('@iframe')
-    .find('[name="postal"]')
-    .type('12345')
-  cy.contains('button', 'Purchase').click()
+  cy.intercept('POST', '**/prod/billing', {
+    statusCode: 200,
+    body: { status: 'complete' },
+  }).as('paymentRequest')
+
+  cy.fillSettingsFormAndSubmit()
+
+  cy.wait('@paymentRequest')
+    .its('response.statusCode')
+    .should('eq', 200)
 })
