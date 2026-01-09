@@ -6,9 +6,12 @@ module.exports = defineConfig({
     baseUrl: 'https://notes-serverless-app.com',
     env: {
       viewportWidthBreakpoint: 768,
-    },
-    requestTimeout: 50000,
-    defaultCommandTimeout: 30000,
+    }
   },
+  setupNodeEvents(on, config) {
+    require('@cypress/grep/src/plugin')(config)
+    return config
+  },
+
     projectId: "1hneqk",
 })
