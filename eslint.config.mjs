@@ -5,10 +5,12 @@ export default [
   // Config recomendada do ESLint
   js.configs.recommended,
 
-  // Seus arquivos JS
+  // Arquivos JS (Browser + Node)
   {
     files: ["**/*.{js,mjs,cjs}"],
     languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
       globals: {
         ...globals.browser,
         ...globals.node,
@@ -17,10 +19,11 @@ export default [
   },
 
   // Scripts CommonJS
-  {
-    files: ["**/*.js"],
-    languageOptions: {
-      sourceType: "script, module', commonjs"  
-    },
+{
+  files: ["**/*.cjs"],
+  languageOptions: {
+    sourceType: "commonjs",
   },
+}
+
 ];
