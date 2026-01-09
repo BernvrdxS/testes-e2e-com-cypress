@@ -29,8 +29,8 @@ describe('Scenarios where authentication is a pre-condition', () => {
 
     
     cy.wait('@paymentRequest')
-      .its('state')
-      .should('be.equal', 'Complete')
+      .its('response.statusCode')
+      .should('eq', 200)
   })
 
   it('logs out', { tags: '@desktop-and-tablet' }, () => {
