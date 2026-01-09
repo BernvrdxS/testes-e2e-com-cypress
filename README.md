@@ -41,5 +41,3 @@ Run `npm run cy:open` to open the __Cypress App__ to run tests in interactive mo
 Run `npm run cy:open:tablet` to open the __Cypress App__ to run tests in interactive mode using a tablet viewport.
 
 ___
-
-Made with ❤️ by [your-name-here](https://your-web-site-or-github-profile-here).
