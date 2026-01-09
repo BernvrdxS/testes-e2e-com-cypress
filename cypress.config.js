@@ -7,8 +7,6 @@ module.exports = defineConfig({
       viewportWidthBreakpoint: 768,
     },
     defaultCommandTimeout: 20000,
-    chromeWebSecurity: false,
-    setupNodeEvents(on, config) {
-    },
   },
+  projectId: "1hneqk"
 })
