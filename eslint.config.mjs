@@ -2,12 +2,11 @@ import js from "@eslint/js";
 import globals from "globals";
 
 export default [
-  // Config recomendada do ESLint
   js.configs.recommended,
 
-  // Arquivos JS (Browser + Node)
+  // Config geral (ES Modules)
   {
-    files: ["**/*.{js,mjs,cjs}"],
+    files: ["**/*.{js,mjs}"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
@@ -18,12 +17,26 @@ export default [
     },
   },
 
-  // Scripts CommonJS
-{
-  files: ["**/*.cjs"],
-  languageOptions: {
-    sourceType: "commonjs",
+  // 🔥 CommonJS (cypress.config.js)
+  {
+    files: ["cypress.config.js"],
+    languageOptions: {
+      sourceType: "commonjs",
+      globals: {
+        ...globals.node,
+      },
+    },
   },
-}
 
+  // Cypress tests
+  {
+    files: ["cypress/**/*.js"],
+    languageOptions: {
+      globals: {
+        ...globals.mocha,
+        cy: "readonly",
+        Cypress: "readonly",
+      },
+    },
+  },
 ];
